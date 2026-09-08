@@ -276,7 +276,7 @@ function openRoomModal(roomId) {
   document.getElementById("roomModalAmenities").innerHTML =
     room.amenities.map(item => `<span>✓ ${item}</span>`).join("");
 
-  // Nút đặt phòng luôn hiển thị bình thường
+  // Nút đặt phòng mặc định
   const bookBtn = document.getElementById("roomModalBook");
   bookBtn.textContent = "Đặt phòng này →";
   bookBtn.style.backgroundColor = "";
