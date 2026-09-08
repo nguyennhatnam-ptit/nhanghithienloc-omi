@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nhà Nghỉ Mai Thiên Lộc - Không gian nghỉ ngơi bình yên tại Bãi Dâu, Vũng Tàu.">
+  <title>Mai Thiên Lộc | Nhà nghỉ tại Bãi Dâu</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <!-- Thêm thư viện icon FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="site-header" id="header">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Mai Thiên Lộc - Trang chủ">
+        <img src="images/logo.png" alt="Logo OMI" class="brand-logo">
+        <div>
+          <span class="brand-name">Mai Thiên <b>Lộc</b></span>
+          <small>NHÀ NGHỈ • CÔNG GIÁO</small>
+        </div>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Mở menu">☰</button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#home">Trang chủ</a>
+        <a href="#rooms">Phòng</a>
+        <a href="#gallery">Thư viện</a>
+        <a href="#location">Vị trí</a>
+        <a href="#booking" class="nav-cta">Đặt phòng</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-bg" style="background-image:url('images/hero.jpg')"></div>
+      <div class="hero-overlay"></div>
+
+      <div class="container hero-content">
+        <span class="eyebrow">NHÀ NGHỈ THIÊN LỘC</span>
+        <h1>Bản Hòa Ca An Lành<br><em>Bên Mẹ Bãi Dâu</em></h1>
+        <p>Nghỉ ngơi trọn vẹn, gắn kết tình yêu thương</p>
+
+        <div class="booking-bar" id="bookingBar">
+          <div class="booking-field">
+            <span class="field-icon">↘</span>
+            <label for="checkin">Nhận phòng</label>
+            <input type="date" id="checkin">
+          </div>
+          <div class="booking-field">
+            <span class="field-icon">↗</span>
+            <label for="checkout">Trả phòng</label>
+            <input type="date" id="checkout">
+          </div>
+          <div class="booking-field">
+            <span class="field-icon">⌂</span>
+            <label for="roomType">Phòng</label>
+            <select id="roomType">
+              <option value="">Chọn phòng</option>
+            </select>
+          </div>
+          <button class="booking-search" id="searchRoom">Tìm phòng</button>
+        </div>
+      </div>
+
+      <a class="scroll-hint" href="#intro">Cuộn để khám phá <span>↓</span></a>
+    </section>
+
+    <!-- Intro -->
+    <section class="section intro" id="intro">
+      <div class="container intro-grid">
+        <div class="intro-image image-placeholder" style="background-image:url('images/intro.jpg')">
+        </div>
+        <div class="intro-copy">
+          <span class="eyebrow accent">CHÀO MỪNG BẠN</span>
+          <h2>Nhà Nghỉ Thiên Lộc</h2>
+          <p>
+            Nép mình bên cung đường biển thơ mộng Trần Phú, liền kề Đền Thánh Đức Mẹ Bãi Dâu linh thiêng, Nhà Nghỉ Thiên Lộc mang đến mô hình lưu trú kết hợp nghỉ dưỡng tại thành phố biển Vũng Tàu.
+             Được thành lập từ năm 2008 và vận hành trực tiếp bởi các tu sĩ Dòng Hiến Sĩ Đức Mẹ Vô Nhiễm (OMI), Nhà Nghỉ Thiên Lộc là giao điểm hoàn hảo giữa sự hiếu khách tận tâm và không gian thanh lọc tâm hồn. Nơi đây không đơn thuần là điểm dừng chân, mà là chốn ẩn mình lý tưởng để mỗi du khách tìm lại sự cân bằng, tái tạo năng lượng và gắn kết sâu sắc cùng gia đình, cộng đồng.
+          </p>
+          <p>
+            Từ đây, bạn có thể dễ dàng khám phá khu vực Bãi Dâu và tận hưởng nhịp sống biển
+            theo cách chậm rãi hơn.
+          </p>
+          <a href="#rooms" class="text-link">Khám phá các phòng <span>→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="section benefits">
+      <div class="container">
+        <div class="section-heading center">
+          <span class="eyebrow accent">VÌ SAO CHỌN CHÚNG TÔI?</span>
+          <h2>Nhà nghỉ Mai Thiên Lộc</h2>
+        </div>
+
+        <div class="benefit-grid">
+          <article class="benefit-card">
+            <div class="benefit-icon">⌂</div>
+            <h3>Quy mô tiếp đón</h3>
+            <p>Hệ thống phòng lưu trú thoáng đãng, sạch sẽ, đáp ứng mọi nhu cầu của các cá nhân,
+               gia đình, nhóm bạn cho đến các hội đoàn hành hương với sức chứa đoàn lên đến 70 khách.
+            </p>
+          </article>
+          <article class="benefit-card">
+            <div class="benefit-icon">✦</div>
+            <h3>Không gian tĩnh lặng & Trải nghiệm biển</h3>
+            <p>Tọa lạc tại vị trí đón gió biển trong lành của Bãi Dâu, khuôn viên được thiết kế yên tĩnh, tối ưu hóa cho các hoạt động tĩnh tâm, thường huấn, hội thảo nội bộ hoặc đơn giản là tản bộ thưởng ngoạn cảnh biển</p>
+          </article>
+          <article class="benefit-card">
+            <div class="benefit-icon">≈</div>
+            <h3>Dịch vụ ẩm thực theo yêu cầu</h3>
+            <p> Phục vụ thực đơn ẩm thực phong phú, vệ sinh và giàu dinh dưỡng theo đơn đặt trước,
+               mang đến trải nghiệm sum họp thân tình như tại gia đình.</p>
+          </article>
+          <article class="benefit-card">
+            <div class="benefit-icon">♧</div>
+            <h3>Phù hợp nhóm gia đình & đoàn thể</h3>
+            <p>Nhiều lựa chọn phòng, bao gồm cả phòng tập thể cho đoàn đông.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rooms -->
+    <section class="section rooms" id="rooms">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow accent">LỰA CHỌN LƯU TRÚ</span>
+            <h2>Chọn đúng phòng dành cho bạn</h2>
+          </div>
+          <p>Mỗi phòng là một lựa chọn riêng. Bạn có thể xem theo từng tầng và sức chứa tối đa.</p>
+        </div>
+
+        <div class="floor-tabs" id="floorTabs" role="tablist" aria-label="Lọc phòng theo tầng">
+          <button class="floor-tab active" data-floor="all" type="button">Tất cả phòng</button>
+          <button class="floor-tab" data-floor="ground" type="button">Tầng trệt</button>
+          <button class="floor-tab" data-floor="floor1" type="button">Lầu 1</button>
+          <button class="floor-tab" data-floor="floor2" type="button">Lầu 2</button>
+          <button class="floor-tab" data-floor="group" type="button">Phòng tập thể</button>
+        </div>
+
+        <div class="room-grid" id="roomGrid">
+          <!-- Các thẻ phòng được tạo tự động từ roomData trong script.js -->
+        </div>
+
+        <div class="room-note">
+          <span>i</span>
+          <p><strong>Lưu ý:</strong>Để biết chi tiết về giá cả cũng như các dịch vụ ăn uống vui lòng liên hệ với 0764878668</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Room detail modal -->
+    <div class="room-modal" id="roomModal" aria-hidden="true">
+      <div class="room-modal-backdrop" data-close-room></div>
+      <div class="room-modal-card" role="dialog" aria-modal="true" aria-labelledby="roomModalTitle">
+        <button class="modal-close" type="button" data-close-room aria-label="Đóng">×</button>
+        <div class="room-modal-image" id="roomModalImage"></div>
+        <div class="room-modal-content">
+          <span class="eyebrow accent" id="roomModalFloor">TẦNG</span>
+          <h2 id="roomModalTitle">Tên phòng</h2>
+          <p id="roomModalDescription"></p>
+          <div class="room-detail-meta" id="roomModalMeta"></div>
+          <div class="room-amenities" id="roomModalAmenities"></div>
+          <div class="room-modal-bottom">
+            <div>
+              <small>Giá tham khảo</small>
+              <strong id="roomModalPrice">Liên hệ</strong>
+            </div>
+            <button class="primary-btn" id="roomModalBook" type="button">Đặt phòng này →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gallery -->
+    <section class="section gallery-section" id="gallery">
+      <div class="container">
+        <div class="section-heading center">
+          <span class="eyebrow accent">KHÔNG GIAN THỰC TẾ</span>
+          <h2>Khám phá Mai Thiên Lộc</h2>
+          <p>Hình ảnh được bố trí theo từng không gian để khách dễ hình dung trước khi chọn phòng.</p>
+        </div>
+
+        <div class="gallery-grid">
+          <button class="gallery-item large image-placeholder" style="background-image:url('images/gallery-1.jpg')" data-caption="Không gian nhà nghỉ">
+          </button>
+          <button class="gallery-item image-placeholder" style="background-image:url('images/gallery-2.jpg')" data-caption="Khu vực tầng trệt">
+            <span>Nhà Nguyện</span>
+          </button>
+          <button class="gallery-item image-placeholder" style="background-image:url('images/gallery-3.jpg')" data-caption="Khu vực lầu 1">
+            <span>Tầng 1</span>
+          </button>
+          <button class="gallery-item wide image-placeholder" style="background-image:url('images/gallery-4.jpg')" data-caption="Không gian sinh hoạt">
+            <span>Tầng 2</span>
+          </button>
+          <button class="gallery-item image-placeholder" style="background-image:url('images/gallery-5.jpg')" data-caption="Phòng nghỉ">
+            <span>Tầng trệt</span>
+          </button>
+          <button class="gallery-item large image-placeholder" style="background-image:url('images/gallery-6.jpg')" data-caption="Hành lang lầu 1">
+            <span>Không gian bếp</span>
+          </button>
+          <button class="gallery-item large image-placeholder" style="background-image:url('images/gallery-7.jpg')" data-caption="Hành lang lầu 1">
+            <span>Không gian bếp</span>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Booking -->
+    <section class="section booking-section" id="booking">
+      <div class="container">
+        <div class="booking-card">
+          <div class="booking-intro">
+            <span class="eyebrow">ĐẶT PHÒNG</span>
+            <h2>Sẵn sàng cho<br><em>một chuyến nghỉ ngơi?</em></h2>
+            <p>Điền thông tin cơ bản. Bạn có thể bổ sung ghi chú khi liên hệ xác nhận.</p>
+            <div class="secure">✓ Thông tin được sử dụng để liên hệ xác nhận đặt phòng</div>
+          </div>
+
+          <form id="bookingForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Họ và tên</label>
+                <input id="name" required placeholder="Nguyễn Văn A">
+              </div>
+              <div class="form-group">
+                <label for="phone">Số điện thoại</label>
+                <input id="phone" required placeholder="09xx xxx xxx">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="formCheckin">Ngày nhận phòng</label>
+                <input type="date" id="formCheckin" required>
+              </div>
+              <div class="form-group">
+                <label for="formCheckout">Ngày trả phòng</label>
+                <input type="date" id="formCheckout" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="bookingRoom">Phòng bạn chọn</label>
+              <select id="bookingRoom" required>
+                <!-- Danh sách 13 phòng chi tiết sẽ tự động được Javascript đổ vào đây -->
+              </select>
+            </div>
+            <button class="primary-btn submit-btn" type="submit">Xác nhận đặt phòng</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand footer-brand">
+          <img src="images/logo.png" alt="Logo OMI" class="brand-logo">
+          <div><span class="brand-name"> <b>Mai Thiên Lộc</b></span><small>NHÀ NGHỈ • CÔNG GIÁO</small></div>
+        </div>
+        <p>Một không gian nghỉ ngơi bình yên bên mẹ.</p>
+      </div>
+      <div>
+        <h4>Liên hệ</h4>
+        <span>143/2a Trần phú, Vũng Tàu, Hồ Chí Minh, Việt Nam</span>
+        <span>076 487 8668</span>
+        <span>nhanghithienloc@gmail.com</span>
+      </div>
+      <div>
+        <div class="socials">
+          <!-- Link Zalo tự động -->
+          <a href="https://zalo.me/84764878668" target="_blank">
+            <i class="fas fa-comment-dots"></i> Zalo
+          </a>
+          <!-- Link Gửi Email tự động -->
+          <a href="mailto:nhanghithienloc@gmail.com">
+            <i class="fas fa-envelope"></i> Gmail
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Nhà Nghỉ Mai Thiên Lộc - Vũng Tàu. Mọi quyền được bảo lưu.</div>
+  </footer>
+
+  <!-- Sticky CTA -->
+  <div class="sticky-booking" id="stickyBooking">
+    <span><b>Mai Thiên Lộc</b> · Sẵn sàng đặt phòng?</span>
+    <a href="#booking">Đặt phòng ngay →</a>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightboxClose">×</button>
+    <img id="lightboxImage" src="" alt="">
+    <p id="lightboxCaption"></p>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
