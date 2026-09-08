@@ -466,53 +466,44 @@ body.modal-open { overflow:hidden; }
     color: var(--accent-dark);
     text-decoration: underline;
 }
-/* --- Khung bản đồ Google Maps --- */
-.map-wrapper {
-    width: 100%;
-    height: 500px; 
-    border-radius: 24px; 
-    overflow: hidden; 
-    box-shadow: var(--shadow);
-}
-
-.map-wrapper iframe {
-    width: 100%;
-    height: 100%; 
-    border: none;
-}
-
-@media (max-width: 768px) {
-    .map-wrapper {
-        height: 350px; 
-    }
-}
-
 /* --- Mạng xã hội --- */
+/* --- Chỉnh icon Liên hệ trong Footer --- */
+.footer-grid span i {
+    width: 20px;
+    color: var(--accent); /* Đổi icon thành màu cam cho nổi bật */
+    margin-right: 5px;
+    text-align: center;
+}
+
+/* --- Nút Mạng xã hội (Tròn xoe) --- */
 .socials {
     display: flex;
-    flex-wrap: wrap; 
-    gap: 10px;
+    gap: 12px;
 }
 
 .socials a {
     display: inline-flex;
     align-items: center;
-    gap: 8px; 
+    justify-content: center;
+    width: 42px; /* Chiều rộng cố định */
+    height: 42px; /* Chiều cao cố định bằng chiều rộng */
     border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 999px;
-    padding: 8px 16px;
+    border-radius: 50%; /* Ép cắt thành hình tròn hoàn hảo */
     color: rgba(255, 255, 255, 0.85);
     transition: all 0.3s ease;
-    font-size: 13px;
+    text-decoration: none;
+    padding: 0; /* Xóa khoảng đệm cũ */
 }
 
-.socials a i {
-    font-size: 16px; 
+/* Phóng to icon bên trong lên một chút */
+.socials a i, .socials a span {
+    font-size: 18px; 
 }
 
+/* Hiệu ứng nảy lên màu cam khi rê chuột vào */
 .socials a:hover {
     background: var(--accent); 
     border-color: var(--accent);
     color: #fff;
-    transform: translateY(-2px); 
+    transform: translateY(-4px); 
 }

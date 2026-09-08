@@ -1,9 +1,10 @@
-
 /* =========================================================
-   MAI THIÊN LỘC V2 — DỮ LIỆU TỪNG PHÒNG
-   ---------------------------------------------------------
-   Tổng cộng: 13 phòng (3 Trệt + 6 Lầu 1 + 2 Lầu 2 + 2 Tập thể)
+   MAI THIÊN LỘC V2 — DỮ LIỆU TỪNG PHÒNG & HỆ THỐNG
    ========================================================= */
+
+// 🔴 QUAN TRỌNG: DÁN LINK GOOGLE APPS SCRIPT CỦA BẠN VÀO GIỮA 2 DẤU NGOẶC KÉP BÊN DƯỚI
+const GOOGLE_SHEET_API_URL = "DÁN_LINK_BƯỚC_3_VÀO_ĐÂY";
+
 
 const roomData = [
   // --- TẦNG TRỆT (3 Phòng) ---
@@ -13,6 +14,7 @@ const roomData = [
     floorLabel: "TẦNG TRỆT",
     name: "Phòng a 0.1",
     code: "a 0.1",
+    status: "available",
     capacity: "Tối đa 5 người",
     guests: 5,
     beds: "2 Giường đôi 1 giường đơn",
@@ -27,6 +29,7 @@ const roomData = [
     floorLabel: "TẦNG TRỆT",
     name: "Phòng a 0.2",
     code: "a 0.2",
+    status: "available",
     capacity: "Tối đa 4 người",
     guests: 4,
     beds: "2 Giường đôi",
@@ -41,6 +44,7 @@ const roomData = [
     floorLabel: "TẦNG TRỆT",
     name: "Phòng a0.3",
     code: "a 0.3",
+    status: "available",
     capacity: "Tối đa 3 người",
     guests: 3,
     beds: "1 Giường đơn & 1 Giường đôi",
@@ -57,6 +61,7 @@ const roomData = [
     floorLabel: "LẦU 1",
     name: "Phòng a 1.1",
     code: "a 1.1",
+    status: "available",
     capacity: "Tối đa 5 người",
     guests: 5,
     beds: "1 Giường đơn & 2 giường đôi",
@@ -71,6 +76,7 @@ const roomData = [
     floorLabel: "LẦU 1",
     name: "Phòng a 1.2",
     code: "a 1.2",
+    status: "available",
     capacity: "Tối đa 4 người",
     guests: 4,
     beds: "2 Giường đôi",
@@ -85,6 +91,7 @@ const roomData = [
     floorLabel: "LẦU 1",
     name: "Phòng a 1.3",
     code: "a 1.3",
+    status: "available",
     capacity: "Tối đa 2 người",
     guests: 2,
     beds: "1 Giường đôi",
@@ -99,6 +106,7 @@ const roomData = [
     floorLabel: "LẦU 1",
     name: "Phòng a 1.4",
     code: "a 1.4",
+    status: "available",
     capacity: "Tối đa 2 người",
     guests: 2,
     beds: "1 Giường đôi",
@@ -113,6 +121,7 @@ const roomData = [
     floorLabel: "LẦU 1",
     name: "Phòng a 1.5",
     code: "a 1.5",
+    status: "available",
     capacity: "Tối đa 4 người",
     guests: 4,
     beds: "2 Giường lớn",
@@ -127,6 +136,7 @@ const roomData = [
     floorLabel: "LẦU 1",
     name: "Phòng a 1.6",
     code: "a 1.6",
+    status: "available",
     capacity: "Tối đa 2 người",
     guests: 2,
     beds: "2 Giường đơn",
@@ -143,6 +153,7 @@ const roomData = [
     floorLabel: "LẦU 2",
     name: "Phòng a 2.1",
     code: "a 2.1",
+    status: "available",
     capacity: "Tối đa 2 người",
     guests: 2,
     beds: "1 Giường đôi lớn",
@@ -157,6 +168,7 @@ const roomData = [
     floorLabel: "LẦU 2",
     name: "Phòng a 2.2",
     code: "a 2.2",
+    status: "available",
     capacity: "Tối đa 4-5 người",
     guests: 5,
     beds: "Giường gia đình",
@@ -173,6 +185,7 @@ const roomData = [
     floorLabel: "TẬP THỂ",
     name: "Phòng Tập Thể Lớn",
     code: "TT.LỚN",
+    status: "available",
     capacity: "Tối đa 15-20 người",
     guests: 120,
     beds: "Nhiều nệm/giường",
@@ -187,6 +200,7 @@ const roomData = [
     floorLabel: "TẬP THỂ",
     name: "Phòng Tập Thể Nhỏ",
     code: "TT.NHỎ",
+    status: "available",
     capacity: "Tối đa 6-8 người",
     guests: 8,
     beds: "Nhiều nệm/giường",
@@ -196,6 +210,7 @@ const roomData = [
     amenities: ["Ấm cúng", "Nhóm bạn", "Tiết kiệm"]
   }
 ];
+
 const floorLabels = {
   all: "Tất cả phòng",
   ground: "Tầng trệt",
@@ -206,15 +221,20 @@ const floorLabels = {
 
 function roomCardTemplate(room) {
   const guestText = room.capacity || "Cập nhật sức chứa";
+  const priceHtml = room.price === "Liên hệ" ? `<a href="tel:0764878668" class="phone-link">Liên hệ 📞</a>` : room.price;
   
-  // Tự động chuyển chữ "Liên hệ" thành link gọi điện
-  const priceHtml = room.price === "Liên hệ" ? `<a href="tel:0123456789" class="phone-link">Liên hệ 📞</a>` : room.price;
+  // Xử lý trạng thái phòng hiển thị
+  const isBooked = room.status === "booked";
+  const statusClass = isBooked ? "badge-booked" : "badge-available";
+  const statusText = isBooked ? "Đã được đặt" : "Còn trống";
+  const cardClass = isBooked ? "room-card is-booked" : "room-card";
 
   return `
-    <article class="room-card" data-floor="${room.floor}" data-room-id="${room.id}">
+    <article class="${cardClass}" data-floor="${room.floor}" data-room-id="${room.id}">
       <div class="room-image" style="background-image:url('${room.image}')">
         <div class="room-image-overlay"></div>
         <span class="room-floor-badge">${room.floorLabel}</span>
+        <span class="room-status-badge ${statusClass}">${statusText}</span>
         <div class="room-tag">${room.code}</div>
       </div>
       <div class="room-body">
@@ -226,7 +246,6 @@ function roomCardTemplate(room) {
           <span>▣ Phòng riêng</span>
         </div>
         <div class="room-bottom">
-          <!-- Sử dụng giá trị đã gắn link -->
           <strong>${priceHtml}</strong>
           <button class="outline-btn" type="button" data-view-room="${room.id}">Xem chi tiết</button>
         </div>
@@ -239,7 +258,10 @@ function populateRoomSelect(selectId) {
   const select = document.getElementById(selectId);
   if (!select) return;
   select.innerHTML = `<option value="">Chọn phòng</option>` +
-    roomData.map(room => `<option value="${room.id}">${room.name} — ${room.capacity || "sức chứa cập nhật"}</option>`).join("");
+    roomData.map(room => {
+        const statusLabel = room.status === "booked" ? " (Đã đặt)" : "";
+        return `<option value="${room.id}" ${room.status === 'booked' ? 'disabled' : ''}>${room.name}${statusLabel} — ${room.capacity}</option>`;
+    }).join("");
 }
 
 function renderRooms(floor = "all") {
@@ -269,9 +291,8 @@ function openRoomModal(roomId) {
   document.getElementById("roomModalTitle").textContent = room.name;
   document.getElementById("roomModalDescription").textContent = room.description;
 
-  // Xử lý link gọi điện trong bảng xem chi tiết
   const priceHtml = room.price === "Liên hệ" ? `<a href="tel:0764878668" class="phone-link">Liên hệ 📞</a>` : room.price;
-  document.getElementById("roomModalPrice").innerHTML = priceHtml; // Đổi textContent thành innerHTML
+  document.getElementById("roomModalPrice").innerHTML = priceHtml;
 
   document.getElementById("roomModalMeta").innerHTML = `
     <span>♧ ${room.capacity || "Sức chứa cập nhật"}</span>
@@ -282,7 +303,19 @@ function openRoomModal(roomId) {
   document.getElementById("roomModalAmenities").innerHTML =
     room.amenities.map(item => `<span>✓ ${item}</span>`).join("");
 
-  document.getElementById("roomModalBook").dataset.roomId = room.id;
+  // Khóa nút đặt phòng nếu phòng đã có người đặt
+  const bookBtn = document.getElementById("roomModalBook");
+  if (room.status === "booked") {
+      bookBtn.textContent = "Phòng đã có người đặt";
+      bookBtn.style.backgroundColor = "#95a5a6";
+      bookBtn.style.pointerEvents = "none";
+  } else {
+      bookBtn.textContent = "Đặt phòng này →";
+      bookBtn.style.backgroundColor = "";
+      bookBtn.style.pointerEvents = "auto";
+  }
+
+  bookBtn.dataset.roomId = room.id;
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
@@ -341,9 +374,10 @@ function initRoomV2() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", initRoomV2);
 
-
+/* =========================================================
+   XỬ LÝ GIAO DIỆN & GỬI FORM EMAIL
+   ========================================================= */
 document.addEventListener("DOMContentLoaded", () => {
   const header = document.getElementById("header");
   const menuToggle = document.getElementById("menuToggle");
@@ -376,23 +410,49 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // --- Xử lý Form Gửi Email ngầm qua FormSubmit ---
   const bookingForm = document.getElementById("bookingForm");
   bookingForm?.addEventListener("submit", e => {
-    e.preventDefault();
+    e.preventDefault(); 
+    
     if (!bookingForm.checkValidity()) {
       bookingForm.reportValidity();
       return;
     }
-    const toast = document.getElementById("toast");
-    if (toast) {
-      toast.textContent = "Đã nhận thông tin đặt phòng. Nhà nghỉ sẽ liên hệ xác nhận với bạn.";
-      toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 4200);
-    }
-    bookingForm.reset();
-    if (checkin) checkin.min = today;
-    populateRoomSelect("roomType");
-    populateRoomSelect("bookingRoom");
+
+    const submitBtn = bookingForm.querySelector('.submit-btn');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = "Đang gửi thông tin...";
+    submitBtn.style.opacity = "0.7";
+    submitBtn.style.pointerEvents = "none";
+
+    const formData = new FormData(bookingForm);
+
+    fetch(bookingForm.action, {
+        method: "POST",
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+        const toast = document.getElementById("toast");
+        if (toast) {
+            toast.textContent = "Đã gửi thành công! Nhà nghỉ sẽ liên hệ lại với bạn sớm nhất.";
+            toast.classList.add("show");
+            setTimeout(() => toast.classList.remove("show"), 4200);
+        }
+        bookingForm.reset();
+        if (checkin) checkin.min = today;
+        populateRoomSelect("roomType");
+        populateRoomSelect("bookingRoom"); 
+    })
+    .catch(error => {
+        alert("Có lỗi xảy ra khi gửi, vui lòng thử lại sau!");
+    })
+    .finally(() => {
+        submitBtn.textContent = originalText;
+        submitBtn.style.opacity = "1";
+        submitBtn.style.pointerEvents = "auto";
+    });
   });
 
   document.querySelectorAll(".gallery-item").forEach(item => {
@@ -428,3 +488,31 @@ document.addEventListener("DOMContentLoaded", () => {
     if (bookingRoom) bookingRoom.value = roomType.value;
   });
 });
+
+
+/* =========================================================
+   KẾT NỐI API GOOGLE SHEETS
+   ========================================================= */
+async function fetchRoomStatusAndRender() {
+  try {
+    if(GOOGLE_SHEET_API_URL !== "DÁN_LINK_BƯỚC_3_VÀO_ĐÂY") {
+        const response = await fetch(GOOGLE_SHEET_API_URL);
+        const statusData = await response.json();
+
+        statusData.forEach(sheetRoom => {
+          const room = roomData.find(r => r.id === sheetRoom.id);
+          if (room) {
+            room.status = sheetRoom.status;
+          }
+        });
+    }
+  } catch (error) {
+    console.error("Lỗi khi tải dữ liệu Google Sheets, dùng trạng thái mặc định:", error);
+  }
+  
+  // Vẽ giao diện web sau khi lấy xong dữ liệu
+  initRoomV2();
+}
+
+// Khởi chạy hệ thống sau khi tải xong toàn bộ HTML
+document.addEventListener("DOMContentLoaded", fetchRoomStatusAndRender);
